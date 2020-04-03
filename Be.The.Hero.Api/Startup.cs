@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Be.The.Hero.Api.Config;
+using Be.The.Hero.Api.Interfaces.Repositories;
+using Be.The.Hero.Api.Models;
+using Be.The.Hero.Api.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +38,9 @@ namespace Be.The.Hero.Api
             );
             // Add framework services.
             services.AddMvc();
+            services.AddScoped<IOngRepository, OngRepository>();
+ 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +60,6 @@ namespace Be.The.Hero.Api
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
-
 
         }
     }

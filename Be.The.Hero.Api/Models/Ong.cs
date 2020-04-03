@@ -1,8 +1,9 @@
-﻿namespace Be.The.Hero.Api.Models
+﻿using Be.The.Hero.Api.Models.Base;
+
+namespace Be.The.Hero.Api.Models
 {
-    public class Ong
+    public class Ong: BaseEntity<string>
     {
-        public string Id { get; set; }
         public string Email { get; set; }
         public string Whatsapp { get; set; }
         public string City { get; set; }
