@@ -6,11 +6,9 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Interfaces\Services\" />
     <Folder Include="Controllers\" />
     <Folder Include="Application\" />
     <Folder Include="Models\ValueObject\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

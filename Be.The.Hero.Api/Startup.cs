@@ -1,7 +1,9 @@
 using Be.The.Hero.Api.Config;
 using Be.The.Hero.Api.Interfaces.Repositories;
+using Be.The.Hero.Api.Interfaces.Services;
 using Be.The.Hero.Api.Models;
 using Be.The.Hero.Api.Repositories;
+using Be.The.Hero.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,8 +40,9 @@ namespace Be.The.Hero.Api
             );
             // Add framework services.
             services.AddMvc();
+            services.AddScoped<IOngService, OngService>();
             services.AddScoped<IOngRepository, OngRepository>();
- 
+
 
         }
 
