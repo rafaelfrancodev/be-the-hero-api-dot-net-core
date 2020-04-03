@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Application\" />
     <Folder Include="Models\ValueObject\" />
   </ItemGroup>
@@ -19,6 +18,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.3.1" />
   </ItemGroup>
 
 </Project>
