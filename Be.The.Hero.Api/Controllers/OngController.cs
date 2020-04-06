@@ -1,5 +1,6 @@
 ﻿using Be.The.Hero.Api.Interfaces.Services;
 using Be.The.Hero.Api.Models;
+using Be.The.Hero.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net;

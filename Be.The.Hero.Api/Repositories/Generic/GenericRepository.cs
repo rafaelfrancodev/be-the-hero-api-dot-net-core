@@ -29,7 +29,8 @@ namespace Be.The.Hero.Api.Repositories.Generic
         {
             try
             {
-                await _db.AddAsync(item).ConfigureAwait(false);
+                _db.Add(item);
+                await _context.SaveChangesAsync();                
                 return item;
             }
             catch (Exception ex)

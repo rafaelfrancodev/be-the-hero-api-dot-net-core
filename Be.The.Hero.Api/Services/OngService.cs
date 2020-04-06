@@ -17,6 +17,7 @@ namespace Be.The.Hero.Api.Services
 
         public async Task<Ong> InsertAsync(Ong entity)
         {
+            entity.Id = GenerateUniqueIdService.Generate();
             return await _ongRepository.InsertAsync(entity).ConfigureAwait(false);
         }
 

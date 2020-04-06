@@ -1,22 +1,20 @@
 using Be.The.Hero.Api.Config;
 using Be.The.Hero.Api.Interfaces.Repositories;
 using Be.The.Hero.Api.Interfaces.Services;
-using Be.The.Hero.Api.Models;
 using Be.The.Hero.Api.Repositories;
 using Be.The.Hero.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
 using System.Reflection;
-using System;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Be.The.Hero.Api
 {
@@ -34,15 +32,9 @@ namespace Be.The.Hero.Api
             AddCors(services);
             AddSwagger(services);
             AddMVC(services);
-            AddOptions(services);          
-
-            var connection = Configuration["SqliteConnectionString"];
-            services.AddDbContext<BeTheHeroSQLiteContext>(options =>
-                options.UseSqlite(connection)
-            );
-
-            services.AddScoped<IOngService, OngService>();
-            services.AddScoped<IOngRepository, OngRepository>();
+            AddOptions(services);
+            AddContextSQLite(services);
+            AddDependencyInjection(services);           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,17 +84,26 @@ namespace Be.The.Hero.Api
                 }
             });
         }
-
         private void AddMVC(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
-
         private void AddOptions(IServiceCollection services)
         {
             services.AddOptions();
         }
-
+        private void AddContextSQLite(IServiceCollection services)
+        {
+            var connection = Configuration["SqliteConnectionString"];
+            services.AddDbContext<BeTheHeroSQLiteContext>(options =>
+                options.UseSqlite(connection)
+            );
+        }
+        private void AddDependencyInjection(IServiceCollection services)
+        {
+            services.AddScoped<IOngService, OngService>();
+            services.AddScoped<IOngRepository, OngRepository>();
+        }
     }
 }
