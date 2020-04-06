@@ -102,8 +102,10 @@ namespace Be.The.Hero.Api
         }
         private void AddDependencyInjection(IServiceCollection services)
         {
+            services.AddScoped<IIncidentService, IncidentService>();
             services.AddScoped<IOngService, OngService>();
             services.AddScoped<IOngRepository, OngRepository>();
+            services.AddScoped<IIncidentRepository, IncidentRepository>();
         }
     }
 }
