@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Be.The.Hero.Api.Repositories.Generic
 {
-    public class GenericRepository<TEntity, TKey> : IRepository<TEntity, TKey>
+    public abstract class GenericRepository<TEntity, TKey> : IRepository<TEntity, TKey>
         where TEntity : BaseEntity<TKey>
     {
 
-        private readonly BeTheHeroSQLiteContext _context;
+        protected BeTheHeroSQLiteContext _context;
 
-        private DbSet<TEntity> _db;
+        protected DbSet<TEntity> _db;
 
         public GenericRepository(BeTheHeroSQLiteContext context)
         {

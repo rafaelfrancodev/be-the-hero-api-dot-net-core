@@ -8,8 +8,6 @@ namespace Be.The.Hero.Api.Config
     [ExcludeFromCodeCoverage]
     public class BeTheHeroSQLiteContext : DbContext
     {
-        private string _databaseDefault = "SQLite";
-
         public BeTheHeroSQLiteContext(
              DbContextOptions<BeTheHeroSQLiteContext> options) : base(options)
         {

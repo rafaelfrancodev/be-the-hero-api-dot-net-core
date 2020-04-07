@@ -1,6 +1,8 @@
 ﻿using Be.The.Hero.Api.Interfaces.Services;
 using Be.The.Hero.Api.Models;
+using Be.The.Hero.Api.Models.ValueObject;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -15,7 +17,20 @@ namespace Be.The.Hero.Api.Controllers
         public IncidentController(IIncidentService incidentService)
         {
             _incidentService = incidentService;
-        }        
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<IncidentWithOngValueObject>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GetAsync([FromQuery] int page = 1)
+        {
+            var total = await _incidentService.CountAllWithOngAsync();
+            Response.Headers.Add("X-Total-Count", total.ToString());
+            var resultado = await _incidentService.SelectWithOngPaginatedAsync(page);
+            return Ok(resultado);
+        }
 
         [HttpPost]
         [ProducesResponseType(typeof(Incident), (int)HttpStatusCode.OK)]

@@ -34,7 +34,7 @@ namespace Be.The.Hero.Api
             AddMVC(services);
             AddOptions(services);
             AddContextSQLite(services);
-            AddDependencyInjection(services);           
+            AddDependencyInjection(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

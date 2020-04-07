@@ -2,14 +2,16 @@
 using Be.The.Hero.Api.Config;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Be.The.Hero.Api.Migrations
 {
     [DbContext(typeof(BeTheHeroSQLiteContext))]
-    partial class BeTheHeroSQLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20200407205931_AddNameOng")]
+    partial class AddNameOng
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
