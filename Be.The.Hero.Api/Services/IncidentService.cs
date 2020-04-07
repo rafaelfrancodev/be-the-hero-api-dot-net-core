@@ -21,6 +21,19 @@ namespace Be.The.Hero.Api.Services
             return await _incidentRepository.CountAllWithOngAsync();
         }
 
+        public async Task<bool> DeleteAsync(int id, string ongId)
+        {
+            var incident = await _incidentRepository.SelectByIdAsync(id);
+
+            if(incident != null && incident.OngId == ongId)
+            {
+                return await _incidentRepository.DeleteAsync(id);
+            }
+
+            return false;
+
+        }
+
         public async Task<Incident> InsertAsync(Incident entity)
         {
             return await _incidentRepository.InsertAsync(entity).ConfigureAwait(false);

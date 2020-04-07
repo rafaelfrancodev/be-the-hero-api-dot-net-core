@@ -111,6 +111,7 @@ namespace Be.The.Hero.Api.Repositories.Generic
                 if (entity != null)
                 {
                     await Task.FromResult(_db.Remove(entity));
+                    await _context.SaveChangesAsync();
                     return true;
                 }
                 return false;

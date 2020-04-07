@@ -28,20 +28,38 @@ namespace Be.The.Hero.Api.Controllers
         {
             var total = await _incidentService.CountAllWithOngAsync();
             Response.Headers.Add("X-Total-Count", total.ToString());
-            var resultado = await _incidentService.SelectWithOngPaginatedAsync(page);
-            return Ok(resultado);
+            var result = await _incidentService.SelectWithOngPaginatedAsync(page);
+            return Ok(result);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Incident), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Incident), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> PostAsync([FromBody] Incident input)
         {
             var ongId = Request.Headers["Authorization"].ToString();
             input.OngId = ongId;
-            var resultado = await _incidentService.InsertAsync(input);
-            return Ok(resultado);
+            var result = await _incidentService.InsertAsync(input);
+            return Created("PostAsync", result);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+        {
+            var ongId = Request.Headers["Authorization"].ToString();
+            var result = await _incidentService.DeleteAsync(id, ongId);
+            if (result)
+            {
+                return NoContent();
+            }
+            return Unauthorized(new { Error = "Operation not permited." });
         }
     }
 }
