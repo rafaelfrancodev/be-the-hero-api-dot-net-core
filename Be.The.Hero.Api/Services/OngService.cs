@@ -25,5 +25,10 @@ namespace Be.The.Hero.Api.Services
         {
             return await _ongRepository.SelectAllAsync().ConfigureAwait(false);
         }
+
+        public async Task<Ong> SelectByIdAsync(string id)
+        {
+            return await _ongRepository.SelectByIdAsync(id);
+        }
     }
 }

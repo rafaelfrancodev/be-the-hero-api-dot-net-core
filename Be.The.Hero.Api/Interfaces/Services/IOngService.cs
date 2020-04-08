@@ -8,5 +8,6 @@ namespace Be.The.Hero.Api.Interfaces.Services
     {
         Task<Ong> InsertAsync(Ong entity);
         Task<IEnumerable<Ong>> SelectAllAsync();
+        Task<Ong> SelectByIdAsync(string id);
     }
 }
