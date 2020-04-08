@@ -39,6 +39,11 @@ namespace Be.The.Hero.Api.Services
             return await _incidentRepository.InsertAsync(entity).ConfigureAwait(false);
         }
 
+        public async Task<IEnumerable<Incident>> SelectAllByOngAsync(string ongId)
+        {
+            return await _incidentRepository.SelectFilterAsync(x => x.OngId == ongId);             
+        }
+
         public async Task<IEnumerable<IncidentWithOngValueObject>> SelectWithOngPaginatedAsync(int page = 1)
         {
             return await _incidentRepository.SelectWithOngPaginatedAsync(page);

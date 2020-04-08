@@ -11,5 +11,6 @@ namespace Be.The.Hero.Api.Interfaces.Services
         Task<IEnumerable<IncidentWithOngValueObject>> SelectWithOngPaginatedAsync(int page = 1);
         Task<int> CountAllWithOngAsync();
         Task<bool> DeleteAsync(int id, string ongId);
+        Task<IEnumerable<Incident>> SelectAllByOngAsync(string ongId);
     }
 }
